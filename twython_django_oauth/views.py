@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate, login, logout as django_logout
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from twython import Twython
 
@@ -90,4 +90,4 @@ def user_timeline(request):
     twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET,
                       user.oauth_token, user.oauth_secret)
     user_tweets = twitter.get_home_timeline()
-    return render_to_response('tweets.html', {'tweets': user_tweets})
+    return render(None, 'tweets.html', {'tweets': user_tweets})
